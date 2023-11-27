@@ -60,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 if(snapshot.hasData) {
                   return SizedBox (
                     width: double.infinity,
-                    height: _screenSize.height * 0.8,
-                    child: PageView(
+                    height: _screenSize.height * 0.86,
+                    child: ListView(
                       scrollDirection: Axis.vertical,
                       children: _pokemonItem(snapshot.data as List<Pokemon>),
                     ),
@@ -79,19 +79,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _pokemonItem(List<Pokemon> pokemons) {
     return pokemons.map((pokemon) {
-      return Expanded(
-        child: Row (
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(pokemon.img),
-              radius: 50,
+      return Column (
+        children: [
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Container(
+              height: 150.0,
+              child: Row (
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(pokemon.img),
+                    radius: 50,
+                  ),
+                  Expanded(
+                      child: Padding (
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(pokemon.idPokedex),
+                            Text(pokemon.name)
+                          ],
+                        ),
+                      )
+                  )
+                ],
+              ),
             ),
-
-            Text(pokemon.name)
-          ],
-        ),
-
-    );
+          )
+        ],
+      );
     }).toList();
   }
 }

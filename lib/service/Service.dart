@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 class Service extends IService {
   var urlDevServer = "http://demetrio-pk-api.jdemetriodc.com/pokemon";
+  //var urlDevServer = "http://localhost:5290/pokemon";
 
   @override
   Future<List<Pokemon>> getPokemons() async {
